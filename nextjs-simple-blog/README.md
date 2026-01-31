@@ -6,12 +6,10 @@ First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+start docker postgresql
+
+npx prisma studio
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -25,8 +23,29 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 
 # apa saja yangf di install di latihan project ini
+
+```bash
 npx shadcn@latest add button
 npx shadcn@latest add card
+
 npm install -D prisma
 npm install @prisma/client
+npx prisma init
+
+npm install better-auth
+npx prisma generate
+npm install @prisma/adapter-pg
+npx @better-auth/cli generate
+
+npx prisma generate
+npx prisma db push                  -> harus aktifkan docker pgAdmin
+npx prisma studio                   -> localhost:51212 untuk melihat table yang dibuat
+
+npx prisma db seed                  -> saat jalankan ini error
+npm install -D tsx                  -> jalankan ini
+
+npm i react-markdown remark-gfm     -> 
+```
+
+- npx prisma db seed = digunakan saat ingin update isi table database
 
