@@ -1,55 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Simple Blog - Latihan Prisma & Docker
 
-## Getting Started
+Project ini adalah aplikasi web blog sederhana yang dibangun menggunakan **Next.js 14** untuk tujuan pembelajaran. Fokus utama project ini adalah mengimplementasikan sistem database lokal menggunakan **Prisma ORM** yang terhubung ke **PostgreSQL** di dalam container **Docker**.
 
-First, run the development server:
+## 🚀 Fitur Utama
+- **Blog Sederhana**: Menampilkan konten blog dengan dukungan Markdown.
+- **Sistem Komentar**: User dapat memberikan feedback pada postingan blog.
+- **GitHub Authentication**: Login aman menggunakan akun GitHub melalui Better Auth.
+- **Database Lokal**: Manajemen data menggunakan PostgreSQL yang dijalankan via Docker Desktop.
 
+## 🛠️ Stack Teknologi
+- **Framework**: Next.js 14 (App Router)
+- **Database**: PostgreSQL (via Docker)
+- **ORM**: Prisma
+- **Auth**: Better Auth
+- **UI Components**: shadcn/ui & Tailwind CSS
+- **Content**: React Markdown
+
+---
+
+## 📋 Langkah Persiapan (Getting Started)
+
+### 1. Jalankan Database (Docker)
+Pastikan Docker Desktop kamu sudah aktif, lalu jalankan container PostgreSQL:
 ```bash
+docker run --name postgres-nextjs -e POSTGRES_PASSWORD=randompassword -e POSTGRES_DB=nextjs_simple_blog_db -p 5432:5432 -d postgres
+
+2. Konfigurasi Environment
+
+Pastikan file .env kamu sudah terisi dengan benar (DATABASE_URL, BETTER_AUTH_SECRET, dsb).
+3. Sinkronisasi Database
+
+Jalankan perintah berikut untuk menyiapkan tabel:
+Bash
+
+npx prisma generate
+npx prisma db push
+
+4. Jalankan Server Development
+Bash
+
 npm run dev
 
-start docker postgresql
+Buka http://localhost:3000 untuk melihat hasilnya.
+📦 Log Instalasi Project
 
-npx prisma studio
-```
+Berikut adalah daftar package dan library yang diinstal dalam project ini untuk referensi pengembangan:
+UI Components (shadcn/ui)
+Bash
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-
-# apa saja yangf di install di latihan project ini
-
-```bash
 npx shadcn@latest add button
 npx shadcn@latest add card
 npx shadcn@latest add avatar
 npx shadcn@latest add textarea
 
+Database & ORM (Prisma)
+Bash
+
 npm install -D prisma
 npm install @prisma/client
 npx prisma init
+npm install @prisma/adapter-pg
+
+Authentication (Better Auth)
+Bash
 
 npm install better-auth
-npx prisma generate
-npm install @prisma/adapter-pg
 npx @better-auth/cli generate
 
-npx prisma generate
-npx prisma db push                  -> harus aktifkan docker pgAdmin
-npx prisma studio                   -> localhost:51212 untuk melihat table yang dibuat
+Konten & Utilities
+Bash
 
-npx prisma db seed                  -> saat jalankan ini error
-npm install -D tsx                  -> jalankan ini
+npm i react-markdown remark-gfm
+npm install -D tsx
 
-npm i react-markdown remark-gfm     -> website browser mengikuti markdown
+💡 Perintah Penting (Cheat Sheet)
+Perintah	Fungsi
+npx prisma generate	Jalankan setiap ada perubahan pada schema.prisma.
+npx prisma db push	Menyinkronkan skema Prisma ke database PostgreSQL (Docker harus aktif).
+npx prisma studio	Membuka antarmuka GUI di browser untuk melihat isi tabel.
+npx prisma db seed	Mengisi database dengan data awal (membutuhkan tsx).
 
+📝 Catatan Pengembangan
+Prisma Studio: Dapat diakses melalui http://localhost:51212 saat dijalankan.
+Markdown: Menggunakan react-markdown agar tampilan konten blog mengikuti format markdown yang profesional.
 ```
-
-- npx prisma db seed    = digunakan saat ingin update isi table database
-- npx prisma generate   = kalau ada mengubah di schema.prisma
-- npx prisma db push    = lakukan setelah generate
