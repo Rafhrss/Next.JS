@@ -27,6 +27,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ```bash
 npx shadcn@latest add button
 npx shadcn@latest add card
+npx shadcn@latest add avatar
+npx shadcn@latest add textarea
 
 npm install -D prisma
 npm install @prisma/client
@@ -44,8 +46,10 @@ npx prisma studio                   -> localhost:51212 untuk melihat table yang 
 npx prisma db seed                  -> saat jalankan ini error
 npm install -D tsx                  -> jalankan ini
 
-npm i react-markdown remark-gfm     -> 
+npm i react-markdown remark-gfm     -> website browser mengikuti markdown
+
 ```
 
-- npx prisma db seed = digunakan saat ingin update isi table database
-
+- npx prisma db seed    = digunakan saat ingin update isi table database
+- npx prisma generate   = kalau ada mengubah di schema.prisma
+- npx prisma db push    = lakukan setelah generate
